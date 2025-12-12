@@ -8,6 +8,13 @@ finish-args:
   - '--socket=wayland'
   - '--socket=fallback-x11'
   - '--filesystem=home'
+cleanup:
+  - "/include"
+  - "/bin/granite-demo"
+  - "/lib/girepository-1.0"
+  - "/lib/pkgconfig"
+  - "/share/gir-1.0"
+  - "/share/vala"
 modules:
   - name: granite
     buildsystem: meson
