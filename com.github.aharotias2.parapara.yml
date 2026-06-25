@@ -1,20 +1,20 @@
 app-id: com.github.aharotias2.parapara
 runtime: org.gnome.Platform
-runtime-version: '49'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 command: com.github.aharotias2.parapara
 finish-args:
-  - '--share=ipc'
-  - '--socket=wayland'
-  - '--socket=fallback-x11'
-  - '--filesystem=home'
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --filesystem=home
 cleanup:
-  - "/include"
-  - "/bin/granite-demo"
-  - "/lib/girepository-1.0"
-  - "/lib/pkgconfig"
-  - "/share/gir-1.0"
-  - "/share/vala"
+  - /include
+  - /bin/granite-demo
+  - /lib/girepository-1.0
+  - /lib/pkgconfig
+  - /share/gir-1.0
+  - /share/vala
 modules:
   - name: granite
     buildsystem: meson
@@ -22,14 +22,15 @@ modules:
       - type: archive
         url: https://github.com/elementary/granite/archive/refs/tags/6.2.0.tar.gz
         sha256: 067d31445da9808a802fca523630c3e4b84d2d7c78ae547ced017cb7f3b9c6b5
+
   - name: parapara
     buildsystem: meson
-    sources:
-      - type: archive
-        url: https://github.com/aharotias2/parapara/archive/refs/tags/v3.2.11.tar.gz
-        sha256: 8f55ad14ac24200ef9ac9e98168b5eceee2e84435f3a69e903273fdf989b69bf
     post-install:
       # workaround for non-png-icon-in-hicolor-size-folder lint error
       - mkdir -p /app/share/icons/hicolor/scalable/apps
       - mv /app/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - find /app/share/icons/hicolor -type f -not -path "*scalable*" -not -path "*actions*" -name "*.svg" -delete
+    sources:
+      - type: archive
+        url: https://github.com/aharotias2/parapara/archive/refs/tags/v3.2.11.tar.gz
+        sha256: 8f55ad14ac24200ef9ac9e98168b5eceee2e84435f3a69e903273fdf989b69bf
